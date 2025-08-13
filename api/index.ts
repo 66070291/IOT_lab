@@ -8,7 +8,7 @@ const app = new Hono().basePath("/api");
 app.use(
   "*",
   cors({
-    origin: "*",
+    origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://iot-bookstore-ashen.vercel.app"],
     allowHeaders: ["Content-Type"],
     allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   })
