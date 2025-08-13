@@ -1,4 +1,5 @@
 import * as t from "drizzle-orm/pg-core";
+// import { relations } from 'drizzle-orm';
 
 export const students = t.pgTable("students", {
   id: t.serial("id").primaryKey(),
@@ -8,3 +9,29 @@ export const students = t.pgTable("students", {
   birthdate: t.timestamp("birthdate").notNull(),
   gender: t.varchar("gender", { length: 1 }).notNull(),
 });
+
+// export const genres = t.pgTable("genres", {
+//   id: t.bigserial({ mode: "number" }).primaryKey(),
+//   title: t
+//     .varchar({
+//       length: 255,
+//     })
+//     .notNull(),
+// });
+
+
+export const books = t.pgTable("books", {
+  id: t.bigserial({ mode: "number" }).primaryKey(),
+  title: t.varchar({ length: 255 }).notNull(),
+  author: t.varchar({ length: 255 }).notNull(),
+  published_at: t.timestamp().notNull(), // เปลี่ยนเป็น snake_case
+  summary: t.text(),
+  genre: t.varchar({ length: 100 }),
+});
+
+// export const bookRelations = relations(books, ({ one }) => ({
+//   genre: one(genres, {
+//     fields: [books.genreId],
+//     references: [genres.id],
+//   }),
+// }));
